@@ -1,0 +1,162 @@
+﻿
+@model eventshighest.Model.Paidorder
+
+<style>
+    #qrcode > img {
+        width: 150px;
+        height: 150px
+    }
+
+
+    .contenido {
+        display: relative;
+        background: #fff;
+        padding: 5px;
+        overflow: hidden;
+        border: 2px dashed #c3c3c3;      
+        border-radius: 2px;
+    }
+
+    .ticket {
+    }
+
+    .hqr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        margin: 0px auto;
+    }
+
+    .column.left-one {
+        background-repeat: no-repeat;
+        background-image: radial-gradient(circle at 0 96%, rgba(0,0,0,0) .2em, gray .3em, white .1em);
+        display: table-cell;
+        padding: 37px 0px;
+    }
+
+    .column.center {
+        display: table-cell;
+        padding: 32px 0px;
+        background: white;
+    }
+
+    .column.right-one {
+        background-repeat: no-repeat;
+        background-image: radial-gradient(circle at 100% 96%, rgba(0,0,0,0) .2em, gray .3em, white .1em);
+        display: table-cell;
+        padding: 37px 0px;
+    }
+
+    .details {
+        display:flex;
+        justify-content:space-between;
+        border-top: 1px dashed #c3c3c3;
+    }
+
+    .tinfo {
+        font-size: 0.97em;
+        font-weight: 500;
+        color: #c3c3c3;
+        font-family: 'Roboto', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 7px 0;
+    }
+
+    .tdata {
+        font-size: 0.97em;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 0.5px;
+        margin: 7px 0;
+    }
+
+    .masinfo {
+        display: block;
+    }
+
+    .left {
+        width: 49%;
+        display: inline-table;
+    }
+
+    .tdata.nesp {
+        font-size: 0.97em;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 0px;
+        margin: 7px 0;
+    }
+
+    .right {
+        width: 49%;
+        display: inline-table;
+    }
+   .contenido {
+   display: block;
+   clear: both;
+   page-break-after: always;
+}
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <div>
+        <ol> 
+                <h3></h3>
+                @foreach (var item in Model.orderItems)
+                {
+                    <li class="contenido">
+                        <div class="ticket">
+                            <div class="hqr">
+                                <div class="column left-one"></div>
+                                <div class="column center">
+                                    <div id="qrcode">
+                                        <img src=@item.Barcodeimgbase64/>                                     
+                                    </div>
+
+                                </div>
+                                <div class="column right-one"></div>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="tinfo">
+                                ticket
+                            </div>
+                            <div class="tdata">
+                                @item.Barcode
+                            </div>
+                            <div class="tinfo">
+                                event
+                            </div>
+                            <div class="tdata">
+                                @item.Name
+                            </div>
+                            <div class="masinfo">
+                                <div class="left">
+                                    <div class="tinfo">
+                                        date
+                                    </div>
+                                    <div class="tdata nesp">
+                                        @item.Startdate
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="tinfo">
+                                       
+                                    </div>
+                                    <div class="tdata nesp">
+                                        @item.PlaceAddress
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+        </ol>
+    </div>
+</body>
+</html>
