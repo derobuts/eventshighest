@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace eventshighest.Service
 {
+    //thread safe queue
     public class BackgroundTaskQueue : IBackgroundTaskQueue
     {
         private ConcurrentQueue<Func<CancellationToken, Task>> _workItems =

@@ -49,12 +49,14 @@ namespace eventshighest.Controllers
             if (ModelState.IsValid)
             {            
                 int orderid;
-                if (User.Identity.IsAuthenticated)
+                var sessionId = HttpContext.Session.Id;
+                if (User.Identity.Name != null)
                 {
                     int userid = int.Parse(User.Identity.Name);
                     orderid = await _orderRepository.CreateOrder(userid, value);
                     return RedirectToAction("Get", new { id = orderid, userid = userid });
                 }
+              
                 else
                 {
                     var user = new AppUser { UserName = Guid.NewGuid().ToString() };

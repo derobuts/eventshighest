@@ -18,6 +18,10 @@ namespace eventshighest.Repository
         {
             _config = config;
         }
+        public void AddOrder()
+        {
+
+        }
         public async Task<int>CreateOrder(int userid,CreateorderPayload createorderPayload)
         {
             List<Task> addticketstoorder = new List<Task>();
@@ -67,7 +71,7 @@ namespace eventshighest.Repository
                 where o.OrdersId = @orderid
                 group by tc.Ticket_id
                 )tc";
-                return await c.QueryAsync<Orderitem>(Sql, new { @orderid = orderid});
+                return await c.QueryAsync<OrderItem>(Sql, new { @orderid = orderid});
             });
             return order;
         }

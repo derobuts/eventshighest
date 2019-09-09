@@ -9,6 +9,6 @@ namespace eventshighest.Model
     {
         public int Activityid { get; set; }
         public DateTime Activityoccurrencedate { get; set; }
-        public List<Orderitem> Ordertoreserve { get; set; }
+        public List<OrderItem> Ordertoreserve { get; set; }
     }
 }

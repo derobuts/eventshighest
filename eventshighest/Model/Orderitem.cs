@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace eventshighest.Model
 {
-    public class Orderitem
+    public class OrderItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
